@@ -16,6 +16,7 @@ public class AirportRepository {
    private HashMap<Integer,Integer> paymentMap= new HashMap<>();
 
     public void addAirport(Airport airport) {
+
         airportMap.put(airport.getAirportName(),airport);
     }
 
@@ -119,5 +120,23 @@ public class AirportRepository {
             }
         }
         return null;
+    }
+
+    public int getNumberOfPeople(Date date, String airportName) {
+        Airport airport=airportMap.get(airportName);
+        int count=0;
+        City city=airport.getCity();
+        for(Flight flight : flightMap.values()){
+           if(date.equals(flight.getFlightDate())){
+               if(city.equals(flight.getToCity()) || city.equals(flight.getFromCity())){
+                  Integer flightId=flight.getFlightId();
+                  Set<Integer> list=flightPassMap.get(flightId);
+                  if(list!=null){
+                      count+= list.size();
+                  }
+               }
+           }
+        }
+return count;
     }
 }

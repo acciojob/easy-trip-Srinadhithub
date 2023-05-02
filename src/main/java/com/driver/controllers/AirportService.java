@@ -5,6 +5,8 @@ import com.driver.model.City;
 import com.driver.model.Flight;
 import com.driver.model.Passenger;
 
+import java.util.Date;
+
 public class AirportService {
     AirportRepository airportRepository= new AirportRepository();
 
@@ -50,5 +52,9 @@ public class AirportService {
 
     public String getAirportName(Integer flightId) {
        return airportRepository.getAirportNmae(flightId);
+    }
+
+    public int getNumberOfPeople(Date date, String airportName) {
+        return airportRepository.getNumberOfPeople(date, airportName);
     }
 }

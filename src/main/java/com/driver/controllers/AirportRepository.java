@@ -125,6 +125,7 @@ public class AirportRepository {
     public int getNumberOfPeople(Date date, String airportName) {
         Airport airport=airportMap.get(airportName);
         int count=0;
+        if(airport!=null){
         City city=airport.getCity();
         for(Flight flight : flightMap.values()){
            if(date.equals(flight.getFlightDate())){
@@ -136,7 +137,7 @@ public class AirportRepository {
                   }
                }
            }
-        }
+        }}
 return count;
     }
 }
